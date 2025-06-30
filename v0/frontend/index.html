@@ -3,26 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de tarefas</title>
+    <title>Dev Roadmap - Seu Guia de Carreira em Tecnologia</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fontawesome/all.min.css">
-    
-  
-    <link rel="shortcut icon" href="assets/imagens/favicon.png" type="assets/imagens/png">
+    <link rel="shortcut icon" href="assets/imagens/favicon.png" type="image/png">
 </head>
-<body>
-    <h1><i class="fa-solid fa-user-tie me-2"></i>Usuario</h1>
-    <h1><i class="fa-solid fa-user-tie me-2"></i>  Usuario</h1>
-    <h1 class="m-0 p-0 text-info"><i class="fa-solid fa-user-tie me-2"></i><span id="username"></span></h1>
-     <h1><i class="fas fa-envelope"></i>   E-mail </h1>
-    <h1><i class="fa-solid fa-magnifying-glass-plus"></i>  Procurar</h1>
+<body class="bg-light">
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-map-signs me-2"></i>
+                Dev Roadmap
+            </a>
+        </div>
+    </nav>
 
-    <h1><i class="fa-solid fa-circle-chevron-right"></i>  Tarefas   </h1>
-    <h1><i class="fa-regular fa-pen-to-square me-2"></i>  Nova tarefa</h1>
-    <h1><i class="fa-regular fa-trash-can me-2"></i> Lixeira</h1>
+    <!-- Conteúdo Principal -->
+    <main class="container mt-5">
+        <!-- Seção de Apresentação (Hero) -->
+        <header class="text-center mb-5">
+            <h1 class="display-4">Trilhas de Aprendizagem para Desenvolvedores</h1>
+            <p class="lead text-muted">Seu guia completo para navegar no mundo da tecnologia. Escolha um roteiro e comece a sua jornada!</p>
+        </header>
 
-    <h3>Gerson</h3>
+        <!-- Seção de Roteiros -->
+        <section>
+            <h2 class="mb-4 text-center">Roteiros Disponíveis</h2>
+            <div class="row">
+                <!-- Card de Roteiro: Frontend -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fa-solid fa-code me-2 text-primary"></i>Frontend</h5>
+                            <p class="card-text">O caminho para se tornar um desenvolvedor frontend, desde os fundamentos de HTML, CSS e JS até frameworks modernos.</p>
+                            <a href="#" class="btn btn-primary mt-auto">Ver Roteiro</a>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Card de Roteiro: Backend -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fa-solid fa-server me-2 text-success"></i>Backend</h5>
+                            <p class="card-text">Aprenda a construir a lógica do lado do servidor, APIs e bancos de dados que potencializam as aplicações web.</p>
+                            <a href="#" class="btn btn-success mt-auto">Ver Roteiro</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card de Roteiro: Embarcados -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fa-solid fa-microchip me-2 text-warning"></i>Embarcados</h5>
+                            <p class="card-text">Explore o mundo dos sistemas embarcados, da eletrônica básica e microcontroladores a sistemas de tempo real.</p>
+                            <a href="#" class="btn btn-warning mt-auto">Ver Roteiro</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Adicione mais cards para outros roteiros aqui (ex: DevOps, Mobile, etc.) -->
+            </div>
+        </section>
+    </main>
+    
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
