@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Accordion Aninhado - Gerenciar Pessoas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .accordion {
+      cursor: pointer;
+      background-color: #f0f0f0;
+      padding: 15px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .panel {
+      display: none;
+      padding: 10px 20px;
+      background-color: #fff;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Estilo para accordion interno */
+    .sub-accordion {
+      background-color: #e9e9e9;
+      margin-top: 10px;
+      padding: 12px;
+    }
+
+    .sub-panel {
+      display: none;
+      padding: 10px 25px;
+      background-color: #f9f9f9;
+      border-left: 1px solid #bbb;
+      border-right: 1px solid #bbb;
+      border-bottom: 1px solid #bbb;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Gerenciar Pessoas</h2>
+
+  <!-- Loop de 6 Seções -->
+  <!-- Você pode repetir isso dinamicamente com JS, mas aqui está manualmente -->
+
+  <!-- Seção 1 -->
+  <button class="accordion">Seção 1: Cadastro</button>
+  <div class="panel">
+    <p>Detalhes sobre cadastro.</p>
+    <!-- 6 Detalhes -->
+    <button class="accordion sub-accordion">Detalhe 1.1</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 1.1</p></div>
+
+    <button class="accordion sub-accordion">Detalhe 1.2</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 1.2</p></div>
+
+    <button class="accordion sub-accordion">Detalhe 1.3</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 1.3</p></div>
+
+    <button class="accordion sub-accordion">Detalhe 1.4</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 1.4</p></div>
+
+    <button class="accordion sub-accordion">Detalhe 1.5</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 1.5</p></div>
+
+    <button class="accordion sub-accordion">Detalhe 1.6</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 1.6</p></div>
+  </div>
+
+  <!-- Seção 2 -->
+  <button class="accordion">Seção 2: Consulta</button>
+  <div class="panel">
+    <p>Detalhes sobre consulta.</p>
+    <!-- 6 Detalhes -->
+    <button class="accordion sub-accordion">Detalhe 2.1</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 2.1</p></div>
+
+    <button class="accordion sub-accordion">Detalhe 2.2</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 2.2</p></div>
+
+    <button class="accordion sub-accordion">Detalhe 2.3</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 2.3</p></div>
+
+    <button class="accordion sub-accordion">Detalhe 2.4</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 2.4</p></div>
+
+    <button class="accordion sub-accordion">Detalhe 2.5</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 2.5</p></div>
+
+    <button class="accordion sub-accordion">Detalhe 2.6</button>
+    <div class="panel sub-panel"><p>Informação detalhada do item 2.6</p></div>
+  </div>
+
+  <!-- Repetir até Seção 6 -->
+  <!-- Aqui você pode copiar e colar as seções acima e mudar os títulos -->
+
+  <script>
+    const accs = document.querySelectorAll(".accordion");
+
+    accs.forEach(button => {
+      button.addEventListener("click", () => {
+        const panel = button.nextElementSibling;
+        panel.style.display = panel.style.display === "block" ? "none" : "block";
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Accordion Aninhado</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .accordion {
+      cursor: pointer;
+      background-color: #f0f0f0;
+      padding: 15px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .panel {
+      display: none;
+      padding: 10px 20px;
+      background-color: #fff;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Estilo para o accordion interno */
+    .sub-accordion {
+      background-color: #e9e9e9;
+      margin-top: 10px;
+    }
+
+    .sub-panel {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Accordion Dentro do Outro</h2>
+
+  <!-- Primeiro Accordion -->
+  <button class="accordion">Seção 1</button>
+  <div class="panel">
+    <p>Conteúdo da Seção 1.</p>
+
+    <!-- Accordion Interno -->
+    <button class="accordion sub-accordion">Detalhe 1.1</button>
+    <div class="panel sub-panel">
+      <p>Detalhe interno da Seção 1.1.</p>
+    </div>
+
+    <button class="accordion sub-accordion">Detalhe 1.2</button>
+    <div class="panel sub-panel">
+      <p>Detalhe interno da Seção 1.2.</p>
+    </div>
+  </div>
+
+  <!-- Segundo Accordion -->
+  <button class="accordion">Seção 2</button>
+  <div class="panel">
+    <p>Conteúdo da Seção 2.</p>
+
+    <!-- Accordion Interno -->
+    <button class="accordion sub-accordion">Detalhe 2.1</button>
+    <div class="panel sub-panel">
+      <p>Detalhe interno da Seção 2.1.</p>
+    </div>
+  </div>
+ <!-- Primeiro Accordion -->
+  <button class="accordion">Seção 1</button>
+  <div class="panel">
+    <p>Conteúdo da Seção 1.</p>
+
+    <!-- Accordion Interno -->
+    <button class="accordion sub-accordion">Detalhe 1.1</button>
+    <div class="panel sub-panel">
+      <p>Detalhe interno da Seção 1.1.</p>
+    </div>
+
+    <button class="accordion sub-accordion">Detalhe 1.2</button>
+    <div class="panel sub-panel">
+      <p>Detalhe interno da Seção 1.2.</p>
+    </div>
+  </div>
+
+  <!-- Segundo Accordion -->
+  <button class="accordion">Seção 2</button>
+  <div class="panel">
+    <p>Conteúdo da Seção 2.</p>
+
+    <!-- Accordion Interno -->
+    <button class="accordion sub-accordion">Detalhe 2.1</button>
+    <div class="panel sub-panel">
+      <p>Detalhe interno da Seção 2.1.</p>
+    </div>
+  </div>
+  <script>
+    const accs = document.querySelectorAll(".accordion");
+
+    accs.forEach(button => {
+      button.addEventListener("click", () => {
+        const panel = button.nextElementSibling;
+        panel.style.display = panel.style.display === "block" ? "none" : "block";
+      });
+    });
+  </script>
+
+</body>
+</html>
