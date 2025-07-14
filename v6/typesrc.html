@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Express com TypeScript</title>
+</head>
+<body>
+    <h1>Projeto Express com TypeScript</h1>
+    
+    <p>Este projeto demonstra como configurar um servidor Express básico usando TypeScript.</p>
+    
+    <p><strong>📁 Repositório no GitHub:</strong> <a href="https://github.com/GersonESantos/typescript/tree/main/DevClub/00" target="_blank">Acesse o código completo aqui</a></p>
+    
+    <h2>Pré-requisitos</h2>
+    <ul>
+        <li>Node.js instalado</li>
+        <li>npm ou yarn</li>
+    </ul>
+    
+    <h2>Configuração do Projeto</h2>
+    
+    <h3>1. Inicializar o projeto</h3>
+    <pre><code>cd C:\Repo2024\typescript\DevClub\00\backend
+npm init -y</code></pre>
+    
+    <h3>2. Instalar dependências</h3>
+    <pre><code># Dependências de produção
+npm install express
+
+# Dependências de desenvolvimento
+npm install --save-dev @types/express @types/node typescript ts-node</code></pre>
+    
+    <h3>3. Configurar TypeScript</h3>
+    <p>Crie o arquivo <code>tsconfig.json</code>:</p>
+    <pre><code>{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}</code></pre>
+    
+    <h3>4. Configurar scripts no package.json</h3>
+    <p>Adicione os scripts no <code>package.json</code>:</p>
+    <pre><code>{
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  }
+}</code></pre>
+    
+    <h3>5. Criar estrutura de pastas</h3>
+    <pre><code>mkdir src</code></pre>
+    
+    <h3>6. Criar o arquivo principal</h3>
+    <p>Crie o arquivo <code>src/index.ts</code> com o seguinte conteúdo:</p>
+    <pre><code>import express, { Request, Response } from 'express';
+
+const app = express();
+
+app.get('/', (req: Request, res: Response) => {
+    res.send('Hello, World!');
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});</code></pre>
+    
+    <h2>Como executar</h2>
+    
+    <h3>Modo desenvolvimento (com hot reload)</h3>
+    <pre><code>npm run dev</code></pre>
+    
+    <h3>Build para produção</h3>
+    <pre><code>cd C:\Repo2024\typescript\DevClub\00\backend
+npm run build
+npm start</code></pre>
+    
+    <h2>Estrutura do projeto</h2>
+    <pre><code>C:\Repo2024\typescript\DevClub\00\backend\
+├── src/
+│   └── index.ts
+├── dist/ (gerado após build)
+├── package.json
+├── tsconfig.json
+└── README.md</code></pre>
+    
+    <h2>Testando a aplicação</h2>
+    <p>Após executar <code>npm run dev</code>, acesse:</p>
+    <ul>
+        <li><a href="http://localhost:3000">http://localhost:3000</a></li>
+    </ul>
+    <p>Você deve ver a mensagem "Hello, World!" no navegador.</p>
+    
+    <h2>Comandos úteis</h2>
+    <ul>
+        <li><code>npm run dev</code> - Executa em modo desenvolvimento</li>
+        <li><code>npm run build</code> - Compila o TypeScript para JavaScript</li>
+        <li><code>npm start</code> - Executa a versão compilada</li>
+        <li><code>npm run clean</code> - Limpa arquivos compilados (se configurado)</li>
+    </ul>
+    
+</body>
+</html>
