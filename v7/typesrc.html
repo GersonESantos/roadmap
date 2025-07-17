@@ -4,8 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto Express com TypeScript + React - DevClub 04</title>
+    <style>
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
+    <button class="back-button" onclick="history.back()">← Voltar</button>
+    
     <h1>Projeto Express com TypeScript + React - DevClub 04</h1>
     
     <p>Este projeto demonstra como criar um servidor Express com TypeScript (backend) e um frontend React que consome a API, incluindo interfaces, enums e comunicação entre frontend e backend.</p>
