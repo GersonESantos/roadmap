@@ -3,35 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Express com TypeScript</title>
+    <title>Projeto Express com TypeScript + React - DevClub 04</title>
 </head>
 <body>
-    <h1>Projeto Express com TypeScript</h1>
+    <h1>Projeto Express com TypeScript + React - DevClub 04</h1>
     
-    <p>Este projeto demonstra como configurar um servidor Express básico usando TypeScript.</p>
+    <p>Este projeto demonstra como criar um servidor Express com TypeScript (backend) e um frontend React que consome a API, incluindo interfaces, enums e comunicação entre frontend e backend.</p>
     
-    <p><strong>📁 Repositório no GitHub:</strong> <a href="https://github.com/GersonESantos/typescript/tree/main/DevClub/00" target="_blank">Acesse o código completo aqui</a></p>
+    <h4>CURSO DE TYPESCRIPT NA PRÁTICA <a href="https://www.youtube.com/watch?v=w2BA05gabP0" target="_blank">YOUTUBE</a></h4>
     
-    <h2>Pré-requisitos</h2>
-    <ul>
-        <li>Node.js instalado</li>
-        <li>npm ou yarn</li>
-    </ul>
+    <h4>MEU TYPESCRIPT <a href="https://github.com/GersonESantos/typescript/tree/main/DevClub/00" target="_blank">Git</a></h4>
     
-    <h2>Configuração do Projeto</h2>
+    <h4>typescriptlang.org <a href="https://www.typescriptlang.org/" target="_blank">Link</a></h4>
     
-    <h3>1. Inicializar o projeto</h3>
-    <pre><code>cd C:\Repo2024\typescript\DevClub\00\backend
+    <p><strong>📁 Repositório:</strong> <a href="https://github.com/GersonESantos/typescript/tree/main/DevClub/04" target="_blank">https://github.com/GersonESantos/typescript/tree/main/DevClub/04</a></p>
+    
+    <h2>Estrutura do Projeto</h2>
+    <pre><code>C:\Repo2024\typescript\DevClub\04\
+├── backend/
+│   ├── src/
+│   │   └── index.ts
+│   ├── package.json
+│   └── tsconfig.json
+└── frontend/
+    ├── src/
+    │   ├── services/
+    │   │   └── api.ts
+    │   ├── App.tsx
+    │   └── main.tsx
+    └── package.json</code></pre>
+    
+    <h2>Configuração do Backend</h2>
+    
+    <h3>1. Inicializar o projeto backend</h3>
+    <pre><code>cd C:\Repo2024\typescript\DevClub\04\backend
 npm init -y</code></pre>
     
-    <h3>2. Instalar dependências</h3>
+    <h3>2. Instalar dependências do backend</h3>
     <pre><code># Dependências de produção
-npm install express
+npm install express cors
 
 # Dependências de desenvolvimento
-npm install --save-dev @types/express @types/node typescript ts-node</code></pre>
-    
-    <h3>3. Configurar TypeScript</h3>
+npm install --save-dev @types/express @types/cors @types/node typescript ts-node</code></pre>
+    <h3>3. Configurar TypeScript no backend</h3>
     <p>Crie o arquivo <code>tsconfig.json</code>:</p>
     <pre><code>{
   "compilerOptions": {
@@ -49,8 +63,7 @@ npm install --save-dev @types/express @types/node typescript ts-node</code></pre
   "exclude": ["node_modules", "dist"]
 }</code></pre>
     
-    <h3>4. Configurar scripts no package.json</h3>
-    <p>Adicione os scripts no <code>package.json</code>:</p>
+    <h3>4. Configurar scripts no package.json do backend</h3>
     <pre><code>{
   "scripts": {
     "dev": "ts-node src/index.ts",
@@ -59,55 +72,266 @@ npm install --save-dev @types/express @types/node typescript ts-node</code></pre
   }
 }</code></pre>
     
-    <h3>5. Criar estrutura de pastas</h3>
-    <pre><code>mkdir src</code></pre>
-    
-    <h3>6. Criar o arquivo principal</h3>
-    <p>Crie o arquivo <code>src/index.ts</code> com o seguinte conteúdo:</p>
+    <h3>5. Criar o arquivo backend/src/index.ts</h3>
     <pre><code>import express, { Request, Response } from 'express';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello, World!');
+enum States{
+    AC = 'Acre',
+    AL = 'Alagoas',
+    AP = 'Amapá',
+    AM = 'Amazonas',
+    BA = 'Bahia',
+    CE = 'Ceará',
+    DF = 'Distrito Federal',
+    ES = 'Espírito Santo',
+    GO = 'Goiás',       
+    MA = 'Maranhão',
+    MT = 'Mato Grosso',
+    MS = 'Mato Grosso do Sul',
+    MG = 'Minas Gerais',
+    PA = 'Pará',
+    PB = 'Paraíba',         
+    PR = 'Paraná',
+    PE = 'Pernambuco',
+    PI = 'Piauí',
+    RJ = 'Rio de Janeiro',
+    RN = 'Rio Grande do Norte',
+    RS = 'Rio Grande do Sul',
+    RO = 'Rondônia',
+    RR = 'Roraima',
+    SC = 'Santa Catarina',
+    SP = 'São Paulo',
+    SE = 'Sergipe',
+    TO = 'Tocantins'
+}
+
+interface IProducts {
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+    address: IAddress;
+}
+
+interface IAddress {
+    street: string;
+    number: number;
+    city: string;
+    state: string;
+}
+
+let produts: IProducts[] = [];
+
+app.get('/', function (req, res) {
+    res.send('API is running');
+});
+
+app.get('/produtos', (req: Request, res: Response) => {
+    const newProduct: IProducts = {
+        id: Math.random(),
+        name: 'Produto ',
+        price: 100,
+        quantity: 10,
+        address: {
+            street: 'Rua A',
+            number: 123,
+            city: 'Cidade B',
+            state: States.AC
+        }
+    }
+
+    produts.push(newProduct);
+    return res.json(produts);
 });
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });</code></pre>
     
+    <h2>Configuração do Frontend</h2>
+    
+    <h3>1. Criar projeto React com TypeScript</h3>
+    <pre><code>cd C:\Repo2024\typescript\DevClub\04
+npm create vite@latest frontend -- --template react-ts
+cd frontend
+npm install</code></pre>
+    
+    <h3>2. Instalar Axios para requisições HTTP</h3>
+    <pre><code>npm install axios</code></pre>
+    
+    <h3>3. Criar arquivo de serviços da API</h3>
+    <p>Crie o arquivo <code>src/services/api.ts</code>:</p>
+    <pre><code>import axios from 'axios';
+
+const api = axios.create({
+  baseURL: 'http://localhost:3000'
+});
+
+export default api;</code></pre>
+    
+    <h3>4. Configurar App.tsx</h3>
+    <pre><code>import { useEffect, useState } from 'react'
+import api from './services/api'
+import './App.css'
+
+enum States{
+  AC = 'Acre',
+  AL = 'Alagoas',
+  AP = 'Amapá',
+  AM = 'Amazonas',
+  BA = 'Bahia',
+  CE = 'Ceará',
+  DF = 'Distrito Federal',
+  ES = 'Espírito Santo',
+  GO = 'Goiás',       
+  MA = 'Maranhão',
+  MT = 'Mato Grosso',
+  MS = 'Mato Grosso do Sul',
+  MG = 'Minas Gerais',
+  PA = 'Pará',
+  PB = 'Paraíba',         
+  PR = 'Paraná',
+  PE = 'Pernambuco',
+  PI = 'Piauí',
+  RJ = 'Rio de Janeiro',
+  RN = 'Rio Grande do Norte',
+  RS = 'Rio Grande do Sul',
+  RO = 'Rondônia',
+  RR = 'Roraima',
+  SC = 'Santa Catarina',
+  SP = 'São Paulo',
+  SE = 'Sergipe',
+  TO = 'Tocantins'
+}
+
+interface IAddress {
+  street: string;
+  number: number;
+  city: string;
+  state: string;
+}
+
+interface IProducts {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  address: IAddress;
+}
+
+function App() {
+  const [products, setProducts] = useState&lt;IProducts[]&gt;([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState&lt;string | null&gt;(null);
+
+  useEffect(() => {
+    async function getProducts() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await api.get&lt;IProducts[]&gt;('/produtos');
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        setError('Erro ao carregar produtos. Verifique se o backend está rodando.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    getProducts();
+  }, []);
+
+  if (loading) {
+    return &lt;div&gt;Carregando...&lt;/div&gt;;
+  }
+
+  if (error) {
+    return &lt;div style={{color: 'red'}}&gt;{error}&lt;/div&gt;;
+  }
+
+  if (products.length === 0) {
+    return &lt;div&gt;Nenhum produto encontrado&lt;/div&gt;;
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Produtos&lt;/h1&gt;
+      {products.map((product) => (
+        &lt;div key={product.id}&gt;
+          &lt;h2&gt;{product.name}&lt;/h2&gt;
+          &lt;p&gt;Price: {product.price}&lt;/p&gt;
+          &lt;p&gt;Quantity: {product.quantity}&lt;/p&gt;
+          &lt;p&gt;Address: {product.address.street}, {product.address.number} - {product.address.city}, {product.address.state}&lt;/p&gt;
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  )
+}
+
+export default App</code></pre>
+    
     <h2>Como executar</h2>
     
-    <h3>Modo desenvolvimento (com hot reload)</h3>
-    <pre><code>npm run dev</code></pre>
+    <h3>1. Executar o Backend</h3>
+    <pre><code>cd C:\Repo2024\typescript\DevClub\04\backend
+npm run dev</code></pre>
     
-    <h3>Build para produção</h3>
-    <pre><code>cd C:\Repo2024\typescript\DevClub\00\backend
-npm run build
-npm start</code></pre>
-    
-    <h2>Estrutura do projeto</h2>
-    <pre><code>C:\Repo2024\typescript\DevClub\00\backend\
-├── src/
-│   └── index.ts
-├── dist/ (gerado após build)
-├── package.json
-├── tsconfig.json
-└── README.md</code></pre>
+    <h3>2. Executar o Frontend</h3>
+    <pre><code>cd C:\Repo2024\typescript\DevClub\04\frontend
+npm run dev</code></pre>
     
     <h2>Testando a aplicação</h2>
-    <p>Após executar <code>npm run dev</code>, acesse:</p>
+    <ol>
+        <li><strong>Backend:</strong> <a href="http://localhost:3000/produtos" target="_blank">http://localhost:3000/produtos</a> - Retorna JSON com produtos</li>
+        <li><strong>Frontend:</strong> <a href="http://localhost:5173" target="_blank">http://localhost:5173</a> - Interface React consumindo a API</li>
+    </ol>
+    
+    <h2>Funcionalidades</h2>
+    
+    <h3>Backend</h3>
     <ul>
-        <li><a href="http://localhost:3000">http://localhost:3000</a></li>
+        <li><strong>CORS habilitado:</strong> Permite requisições do frontend</li>
+        <li><strong>Enum States:</strong> Define todos os estados brasileiros</li>
+        <li><strong>Interfaces TypeScript:</strong> Tipagem forte para produtos e endereços</li>
+        <li><strong>API REST:</strong> Endpoint para criação e listagem de produtos</li>
     </ul>
-    <p>Você deve ver a mensagem "Hello, World!" no navegador.</p>
+    
+    <h3>Frontend</h3>
+    <ul>
+        <li><strong>React com TypeScript:</strong> Interface tipada</li>
+        <li><strong>Axios:</strong> Cliente HTTP para consumir a API</li>
+        <li><strong>Estados gerenciados:</strong> Loading, error e products</li>
+        <li><strong>Componentização:</strong> Estrutura organizada e reutilizável</li>
+    </ul>
     
     <h2>Comandos úteis</h2>
+    
+    <h3>Backend</h3>
     <ul>
         <li><code>npm run dev</code> - Executa em modo desenvolvimento</li>
-        <li><code>npm run build</code> - Compila o TypeScript para JavaScript</li>
+        <li><code>npm run build</code> - Compila o TypeScript</li>
         <li><code>npm start</code> - Executa a versão compilada</li>
-        <li><code>npm run clean</code> - Limpa arquivos compilados (se configurado)</li>
+    </ul>
+    
+    <h3>Frontend</h3>
+    <ul>
+        <li><code>npm run dev</code> - Executa em modo desenvolvimento</li>
+        <li><code>npm run build</code> - Build para produção</li>
+        <li><code>npm run preview</code> - Preview da versão de produção</li>
+    </ul>
+    
+    <h2>Observações</h2>
+    <ul>
+        <li>O backend deve estar rodando antes do frontend</li>
+        <li>A rota <code>/produtos</code> cria um novo produto a cada requisição (não é REST ideal)</li>
+        <li>Para produção, considere usar um banco de dados e autenticação</li>
+        <li>O CORS está habilitado para desenvolvimento local</li>
     </ul>
     
 </body>
